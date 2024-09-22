@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Álbum de Fotos</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ff7e5f, #feb47b);
+      font-family: 'Poppins', sans-serif;
+      /* Cambiar la fuente del body */
+    }
+
+    #carousel {
+      position: relative;
+      z-index: 10;
+    }
+
+    #slides {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.5s ease;
+      height: 100vh;
+    }
+
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide img {
+      width: auto;
+      /* Mantiene el ancho automático */
+      height: 50%;
+      /* Ajusta la altura al 50% */
+      max-width: 90%;
+      /* Limita el ancho máximo al 90% */
+      object-fit: cover;
+      /* Recorta la imagen para llenar el contenedor */
+      border-radius: 10px;
+      /* Esquinas redondeadas */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      /* Sombra */
+    }
+
+    .video-container {
+      display: flex;
+      /* Usar flexbox para centrar */
+      justify-content: center;
+      /* Centrar horizontalmente */
+      align-items: center;
+      /* Centrar verticalmente */
+      width: 100%;
+      /* Ancho completo del contenedor */
+      height: 100%;
+      /* Altura completa del contenedor */
+    }
+
+    .video-container video {
+      width: 70%;
+      /* Ajusta el ancho del video */
+      max-width: 600px;
+      /* Ancho máximo */
+      height: auto;
+      /* Mantener la proporción */
+      border-radius: 10px;
+      /* Esquinas redondeadas */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      /* Sombra */
+    }
+
+
+    .carousel-button {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: transparent;
+      color: white;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .carousel-button:hover {
+      opacity: 1;
+    }
+
+    #prev {
+      top: 10%;
+    }
+
+    #next {
+      bottom: 10%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 15px;
+      /* Ajustar el padding */
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      /* Ancho máximo reducido */
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      color: #ff6b6b;
+      font-size: 1.5rem;
+      /* Tamaño de fuente reducido */
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 0.9rem;
+      /* Tamaño de fuente reducido */
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #ff6b6b;
+    }
+
+    .estrecha {
+      height: auto;
+      /* Permitir que la altura se ajuste automáticamente */
+      width: 50%;
+      /* Ajustar el ancho al 50% */
+      max-width: 400px;
+      /* Limitar el ancho máximo */
+      object-fit: cover;
+      /* Mantener la proporción */
+      border-radius: 10px;
+      /* Esquinas redondeadas */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      /* Sombra */
+    }
+  </style>
+
+
+</head>
+
+<body class="bg-gray-100">
+  <div id="carousel" class="relative overflow-hidden">
+    <!-- Carousel items -->
+    <div id="slides" class="relative">
+      <div class="slide active">
+        <div class="card">
+          <h1 class="text-2xl font-bold text-gray-800 mb-4">¡Feliz 65 cumpleaños, Manuela!</h1>
+          <p class="text-gray-700 mb-2">Hoy celebramos no solo tus años, sino también todos los momentos que hemos
+            compartido a lo largo de nuestra amistad.</p>
+          <p class="text-gray-700 mb-2">Te agradecemos por ser una parte tan importante de nuestras vidas.</p>
+          <p class="text-lg font-semibold text-gray-800">¡Disfruta tu día!</p>
+          <p class="mt-4 text-gray-600">Un abrazo,<br />Tus amigos</p>
+        </div>
+      </div>
+      <div class="slide hidden">
+        <img src="/public/amigas.jpg" alt="Amigas" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/boda.jpg" alt="Boda" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/comida.jpg" alt="Comida" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/consulta.jpg" alt="Consulta" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/dos.jpg" alt="Dos" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/fuente.jpg" alt="Fuente" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/grupo.jpg" alt="Grupo" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/iglesia.jpg" alt="Iglesia" class="estrecha" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/manoli.jpg" alt="Manoli" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/metro.jpg" alt="Metro" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/nieta.jpg" alt="Nieta" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/nieve.jpg" alt="Nieve" />
+      </div>
+
+      <div class="slide hidden">
+        <img src="/public/barsa.jpg" alt="Metro" />
+      </div>
+
+      <div class="slide hidden">
+        <img src="/public/cabina.jpg" alt="Metro" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/carica.jpg" alt="Nieta" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/londres-3.jpg" alt="Nieve" />
+      </div>
+      <div class="slide hidden">
+        <img src="/public/londres-dos.jpg" alt="Tarjeta" />
+      </div>
+
+      <div class="slide hidden">
+        <div class="video-container">
+          <video width="80%" height="60%" controls>
+            <source src="/public/VID-20240922-WA0006.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+          </video>
+        </div>
+      </div>
+      <div class="slide hidden">
+        <div class="video-container">
+          <video width="80%" height="60%" controls>
+            <source src="/public/VID-20240922-WA0007.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de video.
+          </video>
+        </div>
+      </div>
+      <div class="slide hidden">
+        <img src="/public/tarjeta.jpg" alt="Tarjeta" />
+      </div>
+    </div>
+
+    <!-- Carousel controls -->
+    <button id="prev" class="carousel-button">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="h-8 w-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 16V4m0 0l-4 4m4-4l4 4" />
+      </svg>
+    </button>
+    <button id="next" class="carousel-button">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="h-8 w-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v12m0 0l4-4m-4 4l-4-4" />
+      </svg>
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
